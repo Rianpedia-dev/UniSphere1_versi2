@@ -10,14 +10,14 @@ function UserComplaintsList({ userId }) {
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedComplaint, setSelectedComplaint] = useState(null);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(null);
   
   // Ref to track component mounting state
   const mountedRef = React.useRef(true);
 
-  // Update mountedRef when component mounts/unmounts
-  React.useEffect(() => {
+  useEffect(() => {
+    // Update mountedRef when component mounts/unmounts
+    mountedRef.current = true;
+    
     return () => {
       mountedRef.current = false;
     };
@@ -57,31 +57,7 @@ function UserComplaintsList({ userId }) {
     if (userId) {
       loadUserComplaints();
     }
-    
-    // Cleanup function to handle unmounting
-    return () => {
-      mountedRef.current = false;
-    };
   }, [userId]);
-
-  const getStatusConfig = (status) => {
-    const configs = {
-      resolved: { icon: CheckCircle, color: '#00ff88', label: 'Resolved' },
-      rejected: { icon: null, color: '#ff4466', label: 'Rejected' },
-      reviewed: { icon: AlertCircle, color: '#ffaa00', label: 'Reviewed' },
-      pending: { icon: Clock, color: '#00d4ff', label: 'Pending' }
-    };
-    return configs[status] || configs.pending;
-  };
-
-  const getPriorityConfig = (priority) => {
-    const configs = {
-      high: { emoji: '🔥', color: '#ff4466' },
-      low: { emoji: '🌿', color: '#00ff88' },
-      medium: { emoji: '⚡', color: '#ffaa00' }
-    };
-    return configs[priority] || configs.medium;
-  };
 
   const handleDeleteComplaint = async (complaintId) => {
     try {
@@ -95,7 +71,6 @@ function UserComplaintsList({ userId }) {
       
       if (mountedRef.current) {
         setComplaints(prev => prev.filter(c => c.id !== complaintId));
-        setShowDeleteConfirm(null);
       }
     } catch (err) {
       if (mountedRef.current) {
@@ -105,21 +80,13 @@ function UserComplaintsList({ userId }) {
     }
   };
 
-  const confirmDelete = (complaintId) => {
-    setShowDeleteConfirm(complaintId);
-  };
-
-  const cancelDelete = () => {
-    setShowDeleteConfirm(null);
-  };
-
   return (
     <ComplaintList 
       complaints={complaints}
       loading={loading}
       error={error}
-      onView={(complaint) => setSelectedComplaint(complaint)}
-      onDelete={(complaintId) => confirmDelete(complaintId)}
+      onView={() => {}} // No-op since selectedComplaint isn't used in this component
+      onDelete={handleDeleteComplaint}
     />
   );
 }

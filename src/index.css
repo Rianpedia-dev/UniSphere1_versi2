@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow-x: hidden;
+}
+
+/* Hilangkan border pada semua elemen navigasi */
+nav, header {
+  border: none !important;
+}

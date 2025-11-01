@@ -1,31 +1,31 @@
-// src/hooks/useNotifications.js
+// src/hooks/useSentimentReports.js
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
 
-export const useNotifications = (userId) => {
-  const [notifications, setNotifications] = useState([]);
+export const useSentimentReports = (userId) => {
+  const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Load notifications
+  // Load sentiment reports
   useEffect(() => {
     if (!userId) return;
 
-    loadNotifications();
+    loadReports();
 
     // Set up real-time subscription
     const subscription = supabase
-      .channel('notifications-updates')
+      .channel('sentiment-reports-updates')
       .on(
         'postgres_changes',
         {
           event: 'INSERT',
           schema: 'public',
-          table: 'notifications',
+          table: 'sentiment_reports',
           filter: `user_id=eq.${userId}`
         },
         (payload) => {
-          setNotifications(prev => [payload.new, ...prev]);
+          setReports(prev => [payload.new, ...prev]);
         }
       )
       .on(
@@ -33,13 +33,13 @@ export const useNotifications = (userId) => {
         {
           event: 'UPDATE',
           schema: 'public',
-          table: 'notifications',
+          table: 'sentiment_reports',
           filter: `user_id=eq.${userId}`
         },
         (payload) => {
-          setNotifications(prev => 
-            prev.map(notification => 
-              notification.id === payload.new.id ? payload.new : notification
+          setReports(prev => 
+            prev.map(report => 
+              report.id === payload.new.id ? payload.new : report
             )
           );
         }
@@ -53,45 +53,46 @@ export const useNotifications = (userId) => {
     };
   }, [userId]);
 
-  const loadNotifications = async () => {
+  const loadReports = async () => {
     setLoading(true);
     try {
       const { data, error } = await supabase
-        .from('notifications')
+        .from('sentiment_reports')
         .select('*')
         .eq('user_id', userId)
-        .order('created_at', { ascending: false });
+        .order('date', { ascending: false });
 
       if (error) throw error;
 
-      setNotifications(data || []);
+      setReports(data || []);
     } catch (err) {
       setError(err.message);
-      console.error('Error loading notifications:', err);
+      console.error('Error loading sentiment reports:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  const addNotification = async (notificationData) => {
+  const addReport = async (reportData) => {
     if (!userId) {
       throw new Error('User not authenticated');
     }
 
-    if (!notificationData.title || !notificationData.message || !notificationData.type) {
-      throw new Error('Title, message, and type are required for notifications');
+    if (!reportData.sentiment || !reportData.score) {
+      throw new Error('Sentiment and score are required for reports');
     }
 
     setLoading(true);
     try {
       const { data, error } = await supabase
-        .from('notifications')
+        .from('sentiment_reports')
         .insert([{
           user_id: userId,
-          title: notificationData.title,
-          message: notificationData.message,
-          type: notificationData.type,
-          is_read: false
+          date: reportData.date || new Date().toISOString().split('T')[0], // Use current date if not provided
+          sentiment: reportData.sentiment,
+          score: reportData.score,
+          conversation_summary: reportData.conversation_summary || '',
+          recommendations: reportData.recommendations || ''
         }])
         .select()
         .single();
@@ -99,112 +100,113 @@ export const useNotifications = (userId) => {
       if (error) throw error;
 
       // Add to local state
-      setNotifications(prev => [data, ...prev]);
+      setReports(prev => [data, ...prev]);
       return data;
     } catch (err) {
       setError(err.message);
-      console.error('Error adding notification:', err);
+      console.error('Error adding sentiment report:', err);
       throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  const updateNotification = async (notificationId, updateData) => {
+  const updateReport = async (reportId, updateData) => {
     try {
       const { data, error } = await supabase
-        .from('notifications')
+        .from('sentiment_reports')
         .update(updateData)
-        .eq('id', notificationId)
-        .eq('user_id', userId) // Ensure user can only update their own notifications
+        .eq('id', reportId)
+        .eq('user_id', userId) // Ensure user can only update their own reports
         .select()
         .single();
 
       if (error) throw error;
 
       // Update local state
-      setNotifications(prev => 
-        prev.map(notification => 
-          notification.id === notificationId ? { ...notification, ...data } : notification
+      setReports(prev => 
+        prev.map(report => 
+          report.id === reportId ? { ...report, ...data } : report
         )
       );
 
       return data;
     } catch (err) {
       setError(err.message);
-      console.error('Error updating notification:', err);
+      console.error('Error updating sentiment report:', err);
       throw err;
     }
   };
 
-  const deleteNotification = async (notificationId) => {
+  const deleteReport = async (reportId) => {
     try {
       const { error } = await supabase
-        .from('notifications')
+        .from('sentiment_reports')
         .delete()
-        .eq('id', notificationId)
-        .eq('user_id', userId); // Ensure user can only delete their own notifications
+        .eq('id', reportId)
+        .eq('user_id', userId); // Ensure user can only delete their own reports
 
       if (error) throw error;
 
       // Remove from local state
-      setNotifications(prev => prev.filter(notification => notification.id !== notificationId));
+      setReports(prev => prev.filter(report => report.id !== reportId));
     } catch (err) {
       setError(err.message);
-      console.error('Error deleting notification:', err);
+      console.error('Error deleting sentiment report:', err);
       throw err;
     }
   };
 
-  // Mark notification as read
-  const markAsRead = async (notificationId) => {
-    try {
-      await updateNotification(notificationId, { is_read: true });
-    } catch (err) {
-      setError(err.message);
-      console.error('Error marking notification as read:', err);
-      throw err;
-    }
+  // Get sentiment trends for analytics
+  const getSentimentTrend = (days = 7) => {
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - days);
+    
+    const filteredReports = reports.filter(report => {
+      const reportDate = new Date(report.date);
+      return reportDate >= startDate;
+    });
+
+    // Group by date and calculate average sentiment score
+    const groupedByDate = {};
+    filteredReports.forEach(report => {
+      const date = report.date;
+      if (!groupedByDate[date]) {
+        groupedByDate[date] = { date, positive: 0, negative: 0, neutral: 0, count: 0 };
+      }
+      
+      groupedByDate[date][report.sentiment] += 1;
+      groupedByDate[date].count += 1;
+    });
+
+    // Convert to array and sort by date
+    return Object.values(groupedByDate).sort((a, b) => new Date(a.date) - new Date(b.date));
   };
 
-  // Mark all notifications as read
-  const markAllAsRead = async () => {
-    try {
-      const { error } = await supabase
-        .from('notifications')
-        .update({ is_read: true })
-        .eq('user_id', userId)
-        .eq('is_read', false); // Only update unread notifications
+  // Get overall sentiment statistics
+  const getSentimentStats = () => {
+    if (!reports.length) return { positive: 0, negative: 0, neutral: 0, total: 0 };
 
-      if (error) throw error;
+    const stats = reports.reduce(
+      (acc, report) => {
+        acc[report.sentiment] += 1;
+        acc.total += 1;
+        return acc;
+      },
+      { positive: 0, negative: 0, neutral: 0, total: 0 }
+    );
 
-      // Update local state
-      setNotifications(prev => 
-        prev.map(notification => 
-          ({ ...notification, is_read: true })
-        )
-      );
-    } catch (err) {
-      setError(err.message);
-      console.error('Error marking all notifications as read:', err);
-      throw err;
-    }
-  };
-
-  // Get count of unread notifications
-  const getUnreadCount = () => {
-    return notifications.filter(notification => !notification.is_read).length;
+    return stats;
   };
 
   return {
-    notifications,
+    reports,
     loading,
     error,
-    addNotification,
-    updateNotification,
-    deleteNotification,
-    markAsRead,
-    markAllAsRead,
-    getUnreadCount
+    addReport,
+    updateReport,
+    deleteReport,
+    getSentimentTrend,
+    getSentimentStats
   };
 };

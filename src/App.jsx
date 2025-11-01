@@ -8,7 +8,7 @@ const Home = React.lazy(() => import('./pages/Home/Home.jsx'));
 const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage.jsx'));
 const ForumPage = React.lazy(() => import('./pages/Forum/ForumPage.jsx'));
 const AdminPage = React.lazy(() => import('./pages/Admin/AdminPage.jsx'));
-const ComplaintPage = React.lazy(() => import('./pages/Complaint/ComplaintPage.jsx/index.js'));
+const ComplaintPage = React.lazy(() => import('./pages/Complaint/ComplaintPage.jsx'));
 const Login = React.lazy(() => import('./components/Auth/Login.jsx'));
 const Profile = React.lazy(() => import('./components/Auth/Profile.jsx'));
 import Navbar from './components/common/Navbar.jsx';

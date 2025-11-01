@@ -1,0 +1,95 @@
+/* CSS untuk Tombol Delete Pengaduan Sederhana */
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover:not(.delete-button-disabled) {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.delete-button:active:not(.delete-button-disabled) {
+  transform: translateY(0);
+}
+
+.delete-button.delete-button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Delete Confirm Container */
+.delete-confirm-container {
+  display: inline-block;
+}
+
+.delete-confirm-dialog {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+}
+
+.delete-confirm-dialog p {
+  color: #e2e8f0;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.delete-confirm-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.delete-cancel-btn,
+.delete-yes-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.delete-cancel-btn {
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.delete-cancel-btn:hover:not(:disabled) {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.delete-yes-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.delete-yes-btn:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.delete-cancel-btn:disabled,
+.delete-yes-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

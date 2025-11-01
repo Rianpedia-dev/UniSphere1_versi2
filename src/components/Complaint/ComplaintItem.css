@@ -1,0 +1,305 @@
+/* src/components/Complaint/ComplaintItem.css */
+
+/* Card Container */
+.ci-card {
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(51, 65, 85, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ci-card:hover {
+  border-color: rgba(74, 222, 128, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Main clickable header part of the card */
+.ci-card-main {
+  padding: 20px;
+}
+
+.ci-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.ci-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Status Badge */
+.ci-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--status-bg-color, rgba(203, 213, 225, 0.1));
+  color: var(--status-color, #e2e8f0);
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ci-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.ci-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ci-priority-badge {
+  font-weight: 600;
+  color: var(--priority-color, #94a3b8);
+}
+
+/* Collapsible Details Section */
+.ci-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.4s ease-in-out;
+  padding: 0 20px;
+  border-top: 1px solid transparent;
+}
+
+.ci-details.expanded {
+  max-height: 1000px;
+  opacity: 1;
+  padding: 20px 20px;
+  border-top: 1px solid rgba(51, 65, 85, 1);
+}
+
+.ci-category {
+  display: inline-block;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  color: #4ade80;
+}
+
+.ci-desc {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  white-space: pre-wrap;
+}
+
+.ci-image-container {
+  margin-top: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ci-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Actions */
+.ci-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.ci-view-btn,
+.ci-edit-btn,
+.ci-delete-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(51, 65, 85, 1);
+  background: rgba(30, 41, 59, 0.8);
+  color: #94a3b8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ci-view-btn:hover {
+  background: rgba(74, 222, 128, 0.1);
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+.ci-edit-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.ci-delete-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.ci-action-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modal - styles can be kept as they are good */
+.ci-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ci-modal {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  max-width: 400px;
+  width: 90%;
+  overflow: hidden;
+}
+
+.ci-modal-content {
+  padding: 30px;
+}
+
+.ci-modal-content h3 {
+  color: #e2e8f0;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.ci-modal-content p {
+  color: #94a3b8;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.ci-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.ci-btn-cancel,
+.ci-btn-delete {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ci-btn-cancel {
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.ci-btn-cancel:hover {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.ci-btn-delete {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ci-btn-delete:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ci-card-main {
+    padding: 15px;
+  }
+  
+  .ci-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .ci-title {
+    font-size: 1rem;
+  }
+  
+  .ci-status-badge {
+    align-self: flex-start;
+  }
+  
+  .ci-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .ci-actions {
+    flex-direction: column;
+  }
+  
+  .ci-view-btn,
+  .ci-edit-btn,
+  .ci-delete-btn {
+    width: 100%;
+  }
+  
+  .ci-modal {
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  
+  .ci-modal-content {
+    padding: 20px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .ci-card {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(51, 65, 85, 1);
+  }
+  
+  .ci-title {
+    color: #ffffff;
+  }
+  
+  .ci-desc {
+    color: #cbd5e1;
+  }
+}

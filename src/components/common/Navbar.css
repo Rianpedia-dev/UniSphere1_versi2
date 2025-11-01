@@ -1,0 +1,1016 @@
+/* ============================================
+   UNISPHERE NAVBAR - FUTURISTIC STYLES
+   ============================================ */
+
+/* Header Container */
+.unisphere-app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, 
+    rgba(17, 24, 39, 0.95) 0%, 
+    rgba(31, 41, 55, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unisphere-app-header.unisphere-scrolled {
+  background: linear-gradient(135deg, 
+    rgba(17, 24, 39, 0.98) 0%, 
+    rgba(31, 41, 55, 0.98) 100%);
+  box-shadow: 0 8px 40px rgba(99, 102, 241, 0.4),
+              0 4px 20px rgba(168, 85, 247, 0.2);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+/* Animated Particles */
+.unisphere-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.unisphere-particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.8), transparent);
+  border-radius: 50%;
+  animation: unisphere-float 10s infinite ease-in-out;
+  filter: blur(1px);
+}
+
+@keyframes unisphere-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-30px) translateX(20px) scale(1.2);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-15px) translateX(-15px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-40px) translateX(10px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* Navigation Container */
+.unisphere-nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Brand/Logo */
+.unisphere-nav-brand {
+  flex-shrink: 0;
+}
+
+.unisphere-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.unisphere-brand-link:hover {
+  transform: translateY(-2px);
+}
+
+.unisphere-brand-icon {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.6),
+              0 0 60px rgba(139, 92, 246, 0.3);
+  animation: unisphere-pulse-glow 3s ease-in-out infinite;
+}
+
+.unisphere-icon-emoji {
+  font-size: 1.5rem;
+  animation: unisphere-spin-slow 20s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+.unisphere-brand-orbit {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  border-radius: 50%;
+  border-top-color: rgba(99, 102, 241, 0.8);
+  animation: unisphere-orbit 4s linear infinite;
+}
+
+.unisphere-brand-orbit.unisphere-orbit-2 {
+  width: 65px;
+  height: 65px;
+  border-color: rgba(139, 92, 246, 0.2);
+  border-top-color: rgba(139, 92, 246, 0.6);
+  animation: unisphere-orbit 6s linear infinite reverse;
+}
+
+@keyframes unisphere-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.6),
+                0 0 60px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.8),
+                0 0 80px rgba(139, 92, 246, 0.5);
+  }
+}
+
+@keyframes unisphere-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes unisphere-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.unisphere-brand-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  gap: 0.1rem;
+}
+
+.unisphere-text-gradient {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: unisphere-gradient-shift 3s ease-in-out infinite;
+}
+
+.unisphere-text-gradient-alt {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: unisphere-gradient-shift 3s ease-in-out infinite reverse;
+}
+
+@keyframes unisphere-gradient-shift {
+  0%, 100% { filter: brightness(1) hue-rotate(0deg); }
+  50% { filter: brightness(1.2) hue-rotate(10deg); }
+}
+
+.unisphere-brand-zap {
+  color: #fbbf24;
+  animation: unisphere-zap 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+}
+
+@keyframes unisphere-zap {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  25% { transform: scale(1.2) rotate(-10deg); opacity: 0.8; }
+  50% { transform: scale(0.9) rotate(10deg); opacity: 1; }
+  75% { transform: scale(1.1) rotate(-5deg); opacity: 0.9; }
+}
+
+.unisphere-brand-glow {
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent 70%);
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.unisphere-brand-link:hover .unisphere-brand-glow {
+  opacity: 1;
+}
+
+/* Desktop Navigation Links */
+.unisphere-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.unisphere-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  background: rgba(55, 65, 81, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.unisphere-link-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.unisphere-link-emoji {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.unisphere-nav-link:hover .unisphere-link-emoji {
+  transform: scale(1.3) rotate(10deg);
+}
+
+.unisphere-nav-icon {
+  transition: all 0.3s ease;
+}
+
+.unisphere-nav-link:hover .unisphere-nav-icon {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.8));
+}
+
+.unisphere-link-text {
+  transition: all 0.3s ease;
+}
+
+.unisphere-nav-link:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.unisphere-nav-link.unisphere-active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  border-color: rgba(99, 102, 241, 0.6);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4),
+              inset 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.unisphere-nav-active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, transparent);
+  border-radius: 10px 10px 0 0;
+  animation: unisphere-active-pulse 2s ease-in-out infinite;
+}
+
+.unisphere-nav-active-glow {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 15px;
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.6), transparent);
+  filter: blur(8px);
+  animation: unisphere-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes unisphere-active-pulse {
+  0%, 100% { opacity: 1; width: 50%; }
+  50% { opacity: 0.7; width: 70%; }
+}
+
+@keyframes unisphere-glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.unisphere-nav-hover-glow {
+  position: absolute;
+  inset: -5px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent 70%);
+  border-radius: 12px;
+  filter: blur(10px);
+  z-index: 0;
+  animation: unisphere-hover-expand 0.5s ease-out;
+}
+
+@keyframes unisphere-hover-expand {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* User Actions */
+.unisphere-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.unisphere-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(55, 65, 81, 0.4);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 50px;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.unisphere-profile-avatar {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.unisphere-profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+.unisphere-mobile-avatar-img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Hanya sembunyikan ikon User jika avatar gambar ditampilkan */
+.unisphere-mobile-link.unisphere-has-avatar img.unisphere-mobile-avatar-img + svg {
+  display: none;
+}
+
+.unisphere-avatar-pulse {
+  position: absolute;
+  inset: -3px;
+  border: 2px solid rgba(99, 102, 241, 0.5);
+  border-radius: 50%;
+  animation: unisphere-pulse-ring 2s ease-out infinite;
+}
+
+@keyframes unisphere-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.unisphere-profile-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unisphere-profile-badge {
+  font-size: 1rem;
+  animation: unisphere-twinkle 2s ease-in-out infinite;
+}
+
+@keyframes unisphere-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  25% { opacity: 0.6; transform: scale(1.2) rotate(-15deg); }
+  50% { opacity: 1; transform: scale(0.9) rotate(15deg); }
+  75% { opacity: 0.7; transform: scale(1.1) rotate(-10deg); }
+}
+
+.unisphere-profile-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Buttons */
+.unisphere-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.unisphere-btn-signin {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.unisphere-btn-signin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6);
+}
+
+.unisphere-btn-signout {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.unisphere-btn-signout:hover {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.unisphere-btn-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.unisphere-btn:hover .unisphere-btn-glow {
+  opacity: 1;
+  animation: unisphere-ripple 1s ease-out;
+}
+
+.unisphere-btn-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 70%);
+  animation: unisphere-shine 3s ease-in-out infinite;
+}
+
+@keyframes unisphere-shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+@keyframes unisphere-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Mobile Menu Button */
+.unisphere-mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #e5e7eb;
+  position: relative;
+  z-index: 20;
+}
+
+.unisphere-menu-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+}
+
+.unisphere-menu-icon {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.unisphere-menu-icon-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.unisphere-mobile-menu-btn:hover .unisphere-menu-icon-bg {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.unisphere-mobile-menu-btn:hover .unisphere-menu-icon {
+  transform: rotate(90deg);
+}
+
+/* Mobile Menu */
+.unisphere-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: linear-gradient(135deg, 
+    rgba(17, 24, 39, 0.98) 0%, 
+    rgba(31, 41, 55, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.unisphere-mobile-menu.unisphere-menu-open {
+  right: 0;
+}
+
+.unisphere-mobile-menu-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, 
+    rgba(99, 102, 241, 0.1), 
+    transparent 60%);
+  pointer-events: none;
+}
+
+.unisphere-mobile-menu-content {
+  position: relative;
+  padding: 6rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.unisphere-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: rgba(55, 65, 81, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: unisphere-slide-in 0.4s ease-out forwards;
+}
+
+@keyframes unisphere-slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.unisphere-mobile-emoji {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.unisphere-mobile-link:hover .unisphere-mobile-emoji {
+  transform: scale(1.3) rotate(15deg);
+}
+
+.unisphere-mobile-link:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #fff;
+  transform: translateX(-5px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.unisphere-mobile-link.unisphere-active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  border-color: rgba(99, 102, 241, 0.6);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.unisphere-mobile-active-dot {
+  position: absolute;
+  right: 1.5rem;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.8);
+  animation: unisphere-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes unisphere-dot-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+.unisphere-mobile-link:is(button) {
+  background: none;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.unisphere-mobile-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(99, 102, 241, 0.5), 
+    transparent);
+  margin: 1rem 0;
+}
+
+.unisphere-divider-glow {
+  position: absolute;
+  inset: -5px 0;
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.3), transparent);
+  filter: blur(8px);
+  animation: unisphere-divider-pulse 3s ease-in-out infinite;
+}
+
+@keyframes unisphere-divider-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .unisphere-nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .unisphere-nav-links {
+    gap: 0.25rem;
+  }
+
+  .unisphere-nav-link {
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .unisphere-link-emoji {
+    font-size: 1rem;
+  }
+
+  .unisphere-profile-name {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .unisphere-nav-links {
+    display: none;
+  }
+
+  .unisphere-nav-actions {
+    display: none;
+  }
+
+  .unisphere-mobile-menu-btn {
+    display: block;
+  }
+
+  .unisphere-nav {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .unisphere-brand-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .unisphere-icon-emoji {
+    font-size: 1.3rem;
+  }
+
+  .unisphere-brand-text {
+    font-size: 1.3rem;
+  }
+
+  .unisphere-brand-orbit {
+    width: 48px;
+    height: 48px;
+  }
+
+  .unisphere-brand-orbit.unisphere-orbit-2 {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .unisphere-nav {
+    padding: 0.75rem;
+  }
+
+  .unisphere-brand-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .unisphere-icon-emoji {
+    font-size: 1.1rem;
+  }
+
+  .unisphere-brand-text {
+    font-size: 1.1rem;
+  }
+
+  .unisphere-brand-zap {
+    display: none;
+  }
+
+  .unisphere-mobile-menu {
+    max-width: 100%;
+  }
+
+  .unisphere-mobile-menu-content {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .unisphere-mobile-link {
+    padding: 0.85rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .unisphere-mobile-emoji {
+    font-size: 1.3rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & ANIMATIONS
+   ============================================ */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .unisphere-particle,
+  .unisphere-brand-orbit,
+  .unisphere-icon-emoji {
+    animation: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.unisphere-nav-link:focus-visible,
+.unisphere-mobile-link:focus-visible,
+.unisphere-btn:focus-visible,
+.unisphere-profile-btn:focus-visible,
+.unisphere-mobile-menu-btn:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .unisphere-app-header {
+    border-bottom: 2px solid #6366f1;
+  }
+
+  .unisphere-nav-link,
+  .unisphere-mobile-link {
+    border: 2px solid rgba(99, 102, 241, 0.5);
+  }
+
+  .unisphere-nav-link.unisphere-active,
+  .unisphere-mobile-link.unisphere-active {
+    border: 2px solid #6366f1;
+  }
+}
+
+/* Dark mode enhancements (if system prefers dark) */
+@media (prefers-color-scheme: dark) {
+  .unisphere-app-header {
+    background: linear-gradient(135deg, 
+      rgba(10, 15, 25, 0.98) 0%, 
+      rgba(20, 25, 35, 0.98) 100%);
+  }
+
+  .unisphere-nav-link,
+  .unisphere-mobile-link {
+    background: rgba(30, 40, 55, 0.4);
+  }
+}
+
+/* Print styles */
+@media print {
+  .unisphere-app-header {
+    position: relative;
+    background: white;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+  }
+
+  .unisphere-particles,
+  .unisphere-brand-orbit,
+  .unisphere-nav-active-glow,
+  .unisphere-nav-hover-glow,
+  .unisphere-mobile-menu-btn {
+    display: none;
+  }
+
+  .unisphere-nav-link,
+  .unisphere-btn {
+    color: #000;
+    background: none;
+    border: 1px solid #000;
+  }
+}
+
+/* Loading state utility */
+.unisphere-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.unisphere-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(99, 102, 241, 0.3), 
+    transparent);
+  animation: unisphere-loading-shimmer 1.5s infinite;
+}
+
+@keyframes unisphere-loading-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ============================================
+   EXTRA PLAYFUL EFFECTS
+   ============================================ */
+
+/* Confetti effect on active link */
+@keyframes unisphere-confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Ripple effect utility class */
+.unisphere-ripple-effect {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.6), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: unisphere-ripple-expand 1s ease-out;
+  z-index: 9999;
+}
+
+@keyframes unisphere-ripple-expand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(50);
+    opacity: 0;
+  }
+}
+
+/* Hover effect for the entire navbar */
+.unisphere-app-header:hover .unisphere-particle {
+  animation-play-state: running;
+  opacity: 0.8;
+}
+
+/* Easter egg: Triple click brand for fun effect */
+.unisphere-brand-link:active .unisphere-brand-icon {
+  animation: unisphere-bounce 0.5s ease;
+}
+
+@keyframes unisphere-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  50% {
+    transform: scale(0.9) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(3deg);
+  }
+}

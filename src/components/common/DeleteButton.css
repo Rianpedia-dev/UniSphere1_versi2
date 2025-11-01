@@ -1,0 +1,32 @@
+/* CSS untuk Tombol Delete Sederhana */
+
+.delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover:not(.delete-btn-disabled) {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.delete-btn:active:not(.delete-btn-disabled) {
+  transform: translateY(0);
+}
+
+.delete-btn.delete-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,281 @@
+/* src/components/Complaint/UserComplaintsList.css */
+
+/* General Containers */
+.ucl-loading-container,
+.ucl-error-container,
+.ucl-empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  min-height: 250px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.ucl-loading-container .ucl-loader-wrapper {
+  margin-bottom: 20px;
+}
+
+.ucl-error-container {
+  color: #ff6b6b;
+}
+
+/* Header Stats */
+.ucl-header {
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.ucl-stats {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ucl-stat {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  border: 1px solid rgba(51, 65, 85, 1);
+}
+
+/* Grid Layout */
+.ucl-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Simplified to a single column layout */
+  gap: 15px;
+}
+
+/* --- New Simplified Card Style --- */
+.ucl-card {
+  background: rgba(15, 23, 42, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(51, 65, 85, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ucl-card:hover {
+  border-color: rgba(74, 222, 128, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Main clickable header part of the card */
+.ucl-card-main {
+  padding: 20px;
+}
+
+.ucl-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.ucl-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+/* Status Badge - made more prominent */
+.ucl-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--status-bg-color, rgba(203, 213, 225, 0.1));
+  color: var(--status-color, #e2e8f0);
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ucl-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.ucl-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ucl-priority-badge {
+  font-weight: 600;
+  color: var(--priority-color, #94a3b8);
+}
+
+/* Collapsible Details Section */
+.ucl-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.4s ease-in-out;
+  padding: 0 20px;
+  border-top: 1px solid transparent;
+}
+
+.ucl-details.expanded {
+  max-height: 1000px; /* Large enough to not clip content */
+  opacity: 1;
+  padding: 20px 20px;
+  border-top: 1px solid rgba(51, 65, 85, 1);
+}
+
+.ucl-category {
+  display: inline-block;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  color: #4ade80;
+}
+
+.ucl-desc {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  white-space: pre-wrap; /* Respect line breaks */
+}
+
+.ucl-image-container {
+  margin-top: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ucl-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Actions */
+.ucl-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.ucl-edit-btn,
+.ucl-delete-btn {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(51, 65, 85, 1);
+  background: rgba(30, 41, 59, 0.8);
+  color: #94a3b8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ucl-edit-btn:hover {
+  background: rgba(74, 222, 128, 0.1);
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+.ucl-delete-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.ucl-action-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modal - styles can be kept as they are good */
+.ucl-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* (The rest of the modal styles are unchanged) */
+.ucl-modal {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  max-width: 400px;
+  width: 90%;
+  overflow: hidden;
+}
+
+.ucl-modal-content {
+  padding: 30px;
+}
+
+.ucl-modal-content h3 {
+  color: #e2e8f0;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.ucl-modal-content p {
+  color: #94a3b8;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.ucl-modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.ucl-btn-cancel,
+.ucl-btn-delete {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ucl-btn-cancel {
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.ucl-btn-cancel:hover {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.ucl-btn-delete {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ucl-btn-delete:hover {
+  background: rgba(239, 68, 68, 0.2);
+}

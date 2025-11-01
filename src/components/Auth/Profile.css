@@ -1,0 +1,932 @@
+/* Profile.css - Futuristic, Playful & Interactive Profile Styles */
+
+/* ==================== Container ==================== */
+.prof-container {
+  margin-top: 55px;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.prof-container::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -250px;
+  right: -250px;
+  animation: prof-float 8s ease-in-out infinite;
+}
+
+.prof-container::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(30, 144, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: -200px;
+  left: -200px;
+  animation: prof-float 10s ease-in-out infinite reverse;
+}
+
+/* ==================== Main Card ==================== */
+.prof-card {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  background: rgba(26, 26, 62, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(138, 43, 226, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: prof-card-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+@keyframes prof-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==================== Background Decorations ==================== */
+.prof-bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.prof-decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(60px);
+}
+
+.prof-circle-1 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+  top: -100px;
+  right: -50px;
+  animation: prof-pulse 4s ease-in-out infinite;
+}
+
+.prof-circle-2 {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  bottom: -75px;
+  left: 10%;
+  animation: prof-pulse 5s ease-in-out infinite 1s;
+}
+
+.prof-circle-3 {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  top: 40%;
+  right: -90px;
+  animation: prof-pulse 6s ease-in-out infinite 2s;
+}
+
+@keyframes prof-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* ==================== Profile Header ==================== */
+.prof-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  z-index: 2;
+}
+
+/* ==================== Avatar ==================== */
+.prof-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.prof-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  animation: prof-avatar-bounce 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.prof-avatar:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+@keyframes prof-avatar-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.prof-avatar-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.prof-avatar-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 3px;
+  animation: prof-ring-rotate 3s linear infinite;
+}
+
+@keyframes prof-ring-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.prof-avatar-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+  animation: prof-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes prof-glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* ==================== Avatar Image ==================== */
+.prof-avatar-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  animation: prof-avatar-bounce 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.prof-avatar-image-wrapper:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.prof-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.prof-edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 3px solid rgba(26, 26, 62, 0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  z-index: 10;
+}
+
+.prof-edit-avatar-btn:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.prof-edit-avatar-btn:active {
+  transform: scale(0.95) rotate(15deg);
+}
+
+/* ==================== Header Info ==================== */
+.prof-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.prof-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.prof-sparkle-icon {
+  color: #ffd700;
+  animation: prof-sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes prof-sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.8) rotate(180deg);
+  }
+}
+
+.prof-email-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(30, 144, 255, 0.15);
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  border-radius: 12px;
+  color: #4facfe;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.prof-email-badge:hover {
+  background: rgba(30, 144, 255, 0.25);
+  transform: translateX(5px);
+}
+
+.prof-badges {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.prof-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.prof-badge-verified {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.prof-badge-active {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+}
+
+.prof-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+}
+
+/* ==================== Success Toast ==================== */
+.prof-success-toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 8px 24px rgba(17, 153, 142, 0.4);
+  animation: prof-toast-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1000;
+  font-weight: 600;
+}
+
+@keyframes prof-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==================== Error Message ==================== */
+.prof-error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  color: #fca5a5;
+  margin-bottom: 1.5rem;
+  animation: prof-shake 0.5s ease;
+}
+
+@keyframes prof-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.prof-error-icon {
+  font-size: 1.25rem;
+}
+
+/* ==================== Edit Section ==================== */
+.prof-edit-section,
+.prof-view-section {
+  position: relative;
+  z-index: 2;
+}
+
+.prof-section-header {
+  margin-bottom: 2rem;
+}
+
+.prof-section-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+}
+
+.prof-section-header p {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ==================== Form Styles ==================== */
+.prof-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.prof-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prof-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+}
+
+.prof-input,
+.prof-textarea {
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  background: rgba(15, 15, 35, 0.6);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.prof-input:focus,
+.prof-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(15, 15, 35, 0.8);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.prof-input::placeholder,
+.prof-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.prof-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.prof-char-count {
+  align-self: flex-end;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ==================== Bio Card ==================== */
+.prof-bio-card {
+  background: rgba(15, 15, 35, 0.5);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.prof-bio-card:hover {
+  background: rgba(15, 15, 35, 0.7);
+  border-color: rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+}
+
+.prof-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: #4facfe;
+}
+
+.prof-card-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.prof-bio-text {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==================== Stats Grid ==================== */
+.prof-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.prof-stat-card {
+  position: relative;
+  background: rgba(15, 15, 35, 0.5);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.prof-stat-card:hover {
+  background: rgba(15, 15, 35, 0.7);
+  border-color: rgba(102, 126, 234, 0.4);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.3);
+}
+
+.prof-stat-icon {
+  color: #4facfe;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.prof-stat-card:hover .prof-stat-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.prof-stat-content h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prof-stat-content p {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+}
+
+.prof-stat-glow {
+  position: absolute;
+  bottom: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.prof-stat-card:hover .prof-stat-glow {
+  opacity: 1;
+}
+
+/* ==================== Action Buttons ==================== */
+.prof-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.prof-btn {
+  flex: 1;
+  min-width: 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.prof-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.prof-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.prof-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.prof-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);
+}
+
+.prof-btn-primary:active {
+  transform: translateY(0);
+}
+
+.prof-btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.prof-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.prof-btn-danger {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(245, 87, 108, 0.4);
+}
+
+.prof-btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 87, 108, 0.6);
+}
+
+.prof-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ==================== Footer ==================== */
+.prof-footer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.prof-footer p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* ==================== Empty State ==================== */
+.prof-empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: white;
+}
+
+.prof-empty-icon {
+  color: #4facfe;
+  margin-bottom: 1.5rem;
+  animation: prof-float 3s ease-in-out infinite;
+}
+
+.prof-empty-state h2 {
+  font-size: 1.75rem;
+  margin: 0 0 1rem 0;
+  color: white;
+}
+
+.prof-empty-state p {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ==================== Animations ==================== */
+@keyframes prof-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+  .prof-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .prof-card {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .prof-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .prof-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .prof-avatar-text {
+    font-size: 2.5rem;
+  }
+
+  .prof-name {
+    font-size: 1.5rem;
+    justify-content: center;
+  }
+
+  .prof-badges {
+    justify-content: center;
+  }
+
+  .prof-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .prof-actions {
+    flex-direction: column;
+  }
+
+  .prof-btn {
+    min-width: 100%;
+  }
+
+  .prof-success-toast {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .prof-container::before,
+  .prof-container::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prof-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .prof-section-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .prof-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .prof-avatar-text {
+    font-size: 2rem;
+  }
+
+  .prof-name {
+    font-size: 1.25rem;
+  }
+
+  .prof-email-badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .prof-badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+
+
+/* ==================== Avatar Selector ==================== */
+.prof-avatar-selector {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(15, 15, 35, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.prof-avatar-selector h3 {
+  margin: 0 0 1rem 0;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prof-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.75rem;
+}
+
+.prof-avatar-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 30, 60, 0.8);
+}
+
+.prof-avatar-option:hover {
+  transform: scale(1.1);
+  border-color: #667eea;
+}
+
+.prof-avatar-option.selected {
+  border-color: #4facfe;
+  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.3);
+}
+
+.prof-avatar-option-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.prof-avatar-selected-check {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: #4facfe;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 2px solid rgba(26, 26, 62, 0.9);
+  z-index: 2;
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+  .prof-container {
+    background: white;
+  }
+
+  .prof-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .prof-btn,
+  .prof-edit-avatar-btn,
+  .prof-change-avatar-btn,
+  .prof-avatar-selector,
+  .prof-avatar-option,
+  .prof-bg-decoration,
+  .avatar-modal-overlay {
+    display: none;
+  }
+}
